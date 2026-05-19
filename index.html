@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Three Paper Masks — A Serialized Mood-Mystery</title>
+  <title>Three Paper Masks â€” A Serialized Mood-Mystery</title>
   <meta name="description" content="A serialized story in chapters. Recovered, not made. Names withheld." />
 
   <!-- Open Graph -->
@@ -23,7 +23,7 @@
   <!-- Canonical -->
   <link rel="canonical" href="https://threepapermasks.com/" />
 
-  <!-- Vercel Analytics — enable in Vercel Dashboard → Analytics tab, no code needed -->
+  <!-- Vercel Analytics â€” enable in Vercel Dashboard â†’ Analytics tab, no code needed -->
 
   <!-- MailerLite Universal -->
   <script>
@@ -35,7 +35,7 @@
   </script>
   <!-- End MailerLite Universal -->
 
-  <!-- Three.js importmap — update version at cdn.jsdelivr.net/npm/three if needed -->
+  <!-- Three.js importmap â€” update version at cdn.jsdelivr.net/npm/three if needed -->
   <script type="importmap">
     {"imports": {"three": "https://cdn.jsdelivr.net/npm/three@0.168.0/build/three.module.min.js"}}
   </script>
@@ -56,7 +56,7 @@
     </div>
   </section>
 
-  <!-- Synchronous pre-paint removal — runs before first paint so there's no flash -->
+  <!-- Synchronous pre-paint removal â€” runs before first paint so there's no flash -->
   <script>
     (function () {
       var el = document.getElementById('tune-in');
@@ -74,7 +74,7 @@
   <!-- Scanlines -->
   <div class="scanlines" aria-hidden="true"></div>
 
-  <!-- Easter egg rabbit — top right, partially tucked -->
+  <!-- Easter egg rabbit â€” top right, partially tucked -->
   <img
     src="/assets/images/rabbit-mask.png"
     alt=""
@@ -83,7 +83,7 @@
     style="position:fixed; top:1.5rem; right:2rem; z-index:200;"
   />
 
-  <!-- ── NAV ── -->
+  <!-- â”€â”€ NAV â”€â”€ -->
   <nav aria-label="Site navigation">
     <div class="container">
       <div class="nav-inner">
@@ -101,7 +101,7 @@
 
   <main>
 
-    <!-- ── HERO ── -->
+    <!-- â”€â”€ HERO â”€â”€ -->
     <section id="hero" aria-labelledby="site-title">
       <video class="hero-video" autoplay muted loop playsinline poster="/assets/images/hero-poster.jpg" aria-hidden="true">
         <source src="/assets/videos/hero.webm" type="video/webm">
@@ -116,12 +116,12 @@
           Names withheld.
         </p>
         <button class="audio-cta" id="audio-cta" aria-label="Begin ambient audio transmission">
-          Tap to begin transmission →
+          Tap to begin transmission â†’
         </button>
       </div>
     </section>
 
-    <!-- ── ABOUT ── -->
+    <!-- â”€â”€ ABOUT â”€â”€ -->
     <section id="about" aria-labelledby="about-label">
       <div class="container">
         <span class="section-label" id="about-label">Archive</span>
@@ -132,7 +132,7 @@
       </div>
     </section>
 
-    <!-- ── CHAPTER INDEX ── -->
+    <!-- â”€â”€ CHAPTER INDEX â”€â”€ -->
     <section id="chapters" aria-labelledby="chapters-label">
       <div class="container">
         <span class="section-label" id="chapters-label">Chapters</span>
@@ -182,7 +182,7 @@
       </div>
     </section>
 
-    <!-- ── TRANSMISSIONS ── -->
+    <!-- â”€â”€ TRANSMISSIONS â”€â”€ -->
     <section id="transmit" aria-labelledby="transmit-label">
       <div class="container">
         <span class="section-label" id="transmit-label">Transmissions</span>
@@ -235,7 +235,7 @@
             </label>
           </div>
 
-          <button type="submit" class="tpm-submit">Transmit →</button>
+          <button type="submit" class="tpm-submit">Transmit â†’</button>
 
           <p class="tpm-confirm" hidden>
             Received. The signal was logged.<br>
@@ -248,7 +248,7 @@
       </div>
     </section>
 
-    <!-- ── SUBSCRIBE ── -->
+    <!-- â”€â”€ SUBSCRIBE â”€â”€ -->
     <section id="subscribe" aria-labelledby="subscribe-label">
       <div class="container">
         <span class="section-label" id="subscribe-label">Subscribe</span>
@@ -264,7 +264,7 @@
 
   </main>
 
-  <!-- ── FOOTER ── -->
+  <!-- â”€â”€ FOOTER â”€â”€ -->
   <footer>
     <div class="container" style="position:relative;">
       <p class="footer-statement">
@@ -272,9 +272,9 @@
         No part of this archive is true.
       </p>
       <p class="footer-credit">
-        Site design by <a href="https://fsbstudio.com" target="_blank" rel="noopener">chrissyraine</a> —
+        Site design by <a href="https://fsbstudio.com" target="_blank" rel="noopener">chrissyraine</a> â€”
         <a href="https://fsbstudio.com" target="_blank" rel="noopener">fsbstudio.com</a><br>
-        <a href="https://fsbstudio.com" target="_blank" rel="noopener">Commissions open for similar work →</a>
+        <a href="https://fsbstudio.com" target="_blank" rel="noopener">Commissions open for similar work â†’</a>
       </p>
     </div>
   </footer>
@@ -296,12 +296,12 @@
   <div class="cursor" aria-hidden="true"></div>
 
   <div class="rabbit-drift" aria-hidden="true">
-    <img src="/assets/images/rabbit-mask.png" alt="" width="75" height="75">
+    <img src="/assets/images/rabbit-mask.png" alt="" width="225" height="225">
   </div>
 
   <script src="/scripts/main.js"></script>
 
-  <!-- Tune-in loader — dynamically imports Three.js only when needed -->
+  <!-- Tune-in loader â€” dynamically imports Three.js only when needed -->
   <script type="module">
     if (window.__tuneInActive) {
       const { initTuneIn } = await import('/scripts/tune-in.js');
@@ -310,3 +310,4 @@
   </script>
 </body>
 </html>
+
