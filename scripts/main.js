@@ -1,5 +1,20 @@
 /* Three Paper Masks — main.js */
 
+/* ── Mobile broadcast intro (first visit, mobile only) ──────── */
+(function () {
+  const intro = document.getElementById('mobile-intro');
+  if (!intro) return;
+
+  setTimeout(() => {
+    intro.classList.add('fadeout');
+    setTimeout(() => {
+      intro.remove();
+      localStorage.setItem('tpm-tuned-in', 'true');
+      localStorage.setItem('tpm-seen', '1');
+    }, 900);
+  }, 2800);
+}());
+
 /* ── CRT power-on animation (index page, first visit only) ── */
 (function () {
   const overlay = document.getElementById('crt-overlay');

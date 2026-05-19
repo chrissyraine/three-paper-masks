@@ -56,20 +56,39 @@
     </div>
   </section>
 
-  <!-- Synchronous pre-paint removal â€” runs before first paint so there's no flash -->
+  <!-- Synchronous pre-paint removal — runs before first paint so there's no flash -->
   <script>
     (function () {
+      var seen = localStorage.getItem('tpm-tuned-in');
+      var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var mobile = window.innerWidth < 768;
+
+      /* WebGL tune-in: desktop only */
       var el = document.getElementById('tune-in');
-      if (!el) return;
-      if (localStorage.getItem('tpm-tuned-in')) { el.remove(); return; }
-      if (window.innerWidth < 768) { el.remove(); return; }
-      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) { el.remove(); return; }
-      var c = document.createElement('canvas');
-      var gl = c.getContext('webgl') || c.getContext('experimental-webgl');
-      if (!gl) { el.remove(); return; }
-      window.__tuneInActive = true; /* flag for main.js CRT skip */
+      if (el) {
+        if (seen || mobile || reduced) {
+          el.remove();
+        } else {
+          var c = document.createElement('canvas');
+          var gl = c.getContext('webgl') || c.getContext('experimental-webgl');
+          if (!gl) { el.remove(); }
+          else { window.__tuneInActive = true; }
+        }
+      }
+
+      /* Mobile intro: remove if already seen or not mobile */
+      var mob = document.getElementById('mobile-intro');
+      if (mob) {
+        if (seen || !mobile || reduced) { mob.remove(); }
+      }
     }());
   </script>
+
+  <!-- Mobile broadcast intro (CSS-only, first visit, mobile only) -->
+  <div id="mobile-intro" aria-hidden="true">
+    <div class="mobile-static"></div>
+    <div class="mobile-intro-label">Signal acquired</div>
+  </div>
 
   <!-- Scanlines -->
   <div class="scanlines" aria-hidden="true"></div>
