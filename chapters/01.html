@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chapter 01 — The crew assembles | Three Paper Masks</title>
+  <meta name="description" content="Chapter 01: The crew assembles. A serialized mood-mystery. Recovered, not made." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Chapter 01 — The crew assembles | Three Paper Masks" />
+  <meta property="og:description" content="A serialized mood-mystery. Recovered, not made. Names withheld." />
+  <meta property="og:image" content="/assets/images/og-image.jpg" />
+  <meta property="og:url" content="https://threepapermasks.com/chapters/01.html" />
+  <meta property="og:type" content="video.episode" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Chapter 01 — The crew assembles | Three Paper Masks" />
+  <meta name="twitter:image" content="/assets/images/og-image.jpg" />
+
+  <link rel="canonical" href="https://threepapermasks.com/chapters/01.html" />
+
+  <!-- Cloudflare Web Analytics -->
+  <!-- Vercel Analytics — enable in Vercel Dashboard → Analytics tab, no code needed -->
+
+  <link rel="stylesheet" href="/styles/main.css" />
+</head>
+<body>
+
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <!-- Easter egg rabbit — bottom left corner -->
+  <img
+    src="/assets/images/rabbit-mask.png"
+    alt=""
+    aria-hidden="true"
+    class="rabbit-mask"
+    style="position:fixed; bottom:2rem; left:2rem; z-index:200;"
+  />
+
+  <!-- NAV -->
+  <nav aria-label="Site navigation">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="/" class="nav-wordmark">Three Paper Masks</a>
+        <ul class="nav-links">
+          <li><a href="/#about">Archive</a></li>
+          <li><a href="/#chapters">Chapters</a></li>
+          <li><a href="/#transmit">Transmit</a></li>
+          <li><a href="/#subscribe">Subscribe</a></li>
+          <li><a href="/broadcast-notes.html">Press</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <div class="container">
+
+      <!-- Chapter header -->
+      <header class="chapter-header">
+        <span class="chapter-num-display" aria-label="Chapter 01">Chapter 01</span>
+        <h1 class="chapter-title-display">The crew assembles</h1>
+      </header>
+
+      <!-- Video -->
+      <div class="chapter-video-wrap">
+        <video
+          controls
+          preload="none"
+          poster="/assets/images/og-image.jpg"
+          data-src="/assets/videos/chapter-01.mp4"
+          aria-label="Chapter 01 — The crew assembles"
+        >
+          Your browser does not support HTML5 video.
+        </video>
+      </div>
+
+      <!-- Caption -->
+      <p class="chapter-caption">
+        They were not yet wearing the masks when this was recorded.
+        That comes later. The paper was still flat, unfolded,
+        sitting on the table between them like something waiting to be decided.
+      </p>
+
+      <!-- Chapter navigation -->
+      <nav class="chapter-nav" aria-label="Chapter navigation">
+        <span class="nav-prev" aria-hidden="true">—</span>
+        <a href="/" class="nav-center">Back to index</a>
+        <a href="/chapters/02.html" class="nav-next">Next →</a>
+      </nav>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container" style="position:relative;">
+      <p class="footer-statement">
+        No part of this archive is fiction.<br>
+        No part of this archive is true.
+      </p>
+      <p class="footer-credit">
+        Site design by <a href="https://fsbstudio.com" target="_blank" rel="noopener">chrissyraine</a> —
+        <a href="https://fsbstudio.com" target="_blank" rel="noopener">fsbstudio.com</a><br>
+        <a href="https://fsbstudio.com" target="_blank" rel="noopener">Commissions open for similar work →</a>
+      </p>
+    </div>
+  </footer>
+
+  <audio id="ambient" loop preload="auto" src="/assets/audio/transmission.mp3"></audio>
+
+  <button id="audio-toggle" class="audio-toggle" aria-label="Unmute ambient audio">
+    <svg class="icon-on" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <polyline points="2,12 5,5 8,17 11,8 14,13 17,6 20,11"/>
+    </svg>
+    <svg class="icon-off" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <line x1="2" y1="11" x2="20" y2="11"/>
+    </svg>
+  </button>
+
+  <div class="cursor" aria-hidden="true"></div>
+
+  <div class="rabbit-drift" aria-hidden="true">
+    <img src="/assets/images/rabbit-mask.png" alt="" width="75" height="75">
+  </div>
+
+  <script src="/scripts/main.js"></script>
+</body>
+</html>

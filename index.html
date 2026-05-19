@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Three Paper Masks — A Serialized Mood-Mystery</title>
+  <meta name="description" content="A serialized story in chapters. Recovered, not made. Names withheld." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Three Paper Masks" />
+  <meta property="og:description" content="A serialized story in chapters. Recovered, not made. Names withheld." />
+  <meta property="og:image" content="/assets/images/og-image.jpg" />
+  <meta property="og:url" content="https://threepapermasks.com" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Three Paper Masks" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Three Paper Masks" />
+  <meta name="twitter:description" content="A serialized story in chapters. Recovered, not made. Names withheld." />
+  <meta name="twitter:image" content="/assets/images/og-image.jpg" />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://threepapermasks.com/" />
+
+  <!-- Vercel Analytics — enable in Vercel Dashboard → Analytics tab, no code needed -->
+
+  <!-- MailerLite Universal -->
+  <script>
+    (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
+    .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
+    n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
+    (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+    ml('account', '2173538');
+  </script>
+  <!-- End MailerLite Universal -->
+
+  <!-- Three.js importmap — update version at cdn.jsdelivr.net/npm/three if needed -->
+  <script type="importmap">
+    {"imports": {"three": "https://cdn.jsdelivr.net/npm/three@0.168.0/build/three.module.min.js"}}
+  </script>
+
+  <link rel="stylesheet" href="/styles/main.css" />
+</head>
+<body>
+
+  <!-- Tune-in scroll intro (desktop + WebGL only, first visit only) -->
+  <section id="tune-in" aria-label="Tuning in to broadcast">
+    <div class="tune-sticky">
+      <canvas id="tune-canvas"></canvas>
+      <div class="tune-overlay">
+        <p class="tune-label" data-stage="1">Receiving</p>
+        <p class="tune-label" data-stage="2">Tuning</p>
+        <p class="tune-label" data-stage="3">Signal acquired</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Synchronous pre-paint removal — runs before first paint so there's no flash -->
+  <script>
+    (function () {
+      var el = document.getElementById('tune-in');
+      if (!el) return;
+      if (localStorage.getItem('tpm-tuned-in')) { el.remove(); return; }
+      if (window.innerWidth < 768) { el.remove(); return; }
+      if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) { el.remove(); return; }
+      var c = document.createElement('canvas');
+      var gl = c.getContext('webgl') || c.getContext('experimental-webgl');
+      if (!gl) { el.remove(); return; }
+      window.__tuneInActive = true; /* flag for main.js CRT skip */
+    }());
+  </script>
+
+  <!-- Scanlines -->
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <!-- Easter egg rabbit — top right, partially tucked -->
+  <img
+    src="/assets/images/rabbit-mask.png"
+    alt=""
+    aria-hidden="true"
+    class="rabbit-mask"
+    style="position:fixed; top:1.5rem; right:2rem; z-index:200;"
+  />
+
+  <!-- ── NAV ── -->
+  <nav aria-label="Site navigation">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="/" class="nav-wordmark">Three Paper Masks</a>
+        <ul class="nav-links">
+          <li><a href="#about">Archive</a></li>
+          <li><a href="#chapters">Chapters</a></li>
+          <li><a href="#transmit">Transmit</a></li>
+          <li><a href="#subscribe">Subscribe</a></li>
+          <li><a href="/broadcast-notes.html">Press</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ── HERO ── -->
+    <section id="hero" aria-labelledby="site-title">
+      <video class="hero-video" autoplay muted loop playsinline poster="/assets/images/hero-poster.jpg" aria-hidden="true">
+        <source src="/assets/videos/hero.webm" type="video/webm">
+        <source src="/assets/videos/hero.mp4"  type="video/mp4">
+      </video>
+      <div class="hero-overlay" aria-hidden="true"></div>
+      <div class="container hero-content">
+        <h1 id="site-title">Three<br>Paper<br>Masks</h1>
+        <p class="hero-tagline">
+          A serialized story in chapters.<br>
+          Recovered, not made.<br>
+          Names withheld.
+        </p>
+        <button class="audio-cta" id="audio-cta" aria-label="Begin ambient audio transmission">
+          Tap to begin transmission →
+        </button>
+      </div>
+    </section>
+
+    <!-- ── ABOUT ── -->
+    <section id="about" aria-labelledby="about-label">
+      <div class="container">
+        <span class="section-label" id="about-label">Archive</span>
+        <p>Three Paper Masks is a broadcast in fragments. Each chapter recovered, dated approximately, redacted where necessary.</p>
+        <p>Mother. Two boys. Animal masks made of paper. A trail that does not end.</p>
+        <p>New chapters arrive weekly. The transmission is ongoing.</p>
+        <p>What it means is up to you.</p>
+      </div>
+    </section>
+
+    <!-- ── CHAPTER INDEX ── -->
+    <section id="chapters" aria-labelledby="chapters-label">
+      <div class="container">
+        <span class="section-label" id="chapters-label">Chapters</span>
+        <ul class="chapter-list" aria-label="Chapter index">
+
+          <li class="chapter-item">
+            <a href="/chapters/01.html" class="chapter-link">
+              <span class="chapter-num">01</span>
+              <span class="chapter-title">The crew assembles</span>
+              <span class="chapter-hover-text">before the masks went on</span>
+            </a>
+          </li>
+
+          <li class="chapter-item">
+            <a href="/chapters/02.html" class="chapter-link">
+              <span class="chapter-num">02</span>
+              <span class="chapter-title chapter-placeholder">[chapter title TBD]</span>
+              <span class="chapter-hover-text">transmission pending</span>
+            </a>
+          </li>
+
+          <li class="chapter-item">
+            <a href="/chapters/03.html" class="chapter-link">
+              <span class="chapter-num">03</span>
+              <span class="chapter-title chapter-placeholder">[chapter title TBD]</span>
+              <span class="chapter-hover-text">transmission pending</span>
+            </a>
+          </li>
+
+          <li class="chapter-item">
+            <a href="/chapters/04.html" class="chapter-link">
+              <span class="chapter-num">04</span>
+              <span class="chapter-title">The fence is broken</span>
+              <span class="chapter-hover-text">something gave way</span>
+            </a>
+          </li>
+
+          <li class="chapter-item">
+            <a href="/chapters/05.html" class="chapter-link">
+              <span class="chapter-num">05</span>
+              <span class="chapter-title">They saw something. The rabbit didn't.</span>
+              <span class="chapter-hover-text">the last clear image</span>
+            </a>
+          </li>
+
+        </ul>
+      </div>
+    </section>
+
+    <!-- ── TRANSMISSIONS ── -->
+    <section id="transmit" aria-labelledby="transmit-label">
+      <div class="container">
+        <span class="section-label" id="transmit-label">Transmissions</span>
+        <p style="font-style:italic; color:var(--text-mute); font-size:0.85rem; margin-bottom:0.5rem;">Submissions are read. Not all are answered.</p>
+
+        <form id="tpm-transmit" class="tpm-form" novalidate>
+          <h3 class="tpm-form-heading">Transmissions</h3>
+          <p class="tpm-form-intro">
+            Send something. Anything that fits the world.<br>
+            Music, prompts, captions, visuals, voiceover takes.
+          </p>
+
+          <div class="tpm-field">
+            <label for="alias">Alias</label>
+            <input type="text" id="alias" name="alias" required placeholder="What we should call you" />
+          </div>
+
+          <div class="tpm-field">
+            <label for="reply">Where to reply</label>
+            <input type="email" id="reply" name="reply" required placeholder="An address that reaches you" />
+          </div>
+
+          <div class="tpm-field">
+            <label for="type">What you're sending</label>
+            <select id="type" name="type" required>
+              <option value="" disabled selected>Choose one</option>
+              <option value="music">Music</option>
+              <option value="prompt">Prompts</option>
+              <option value="caption">Captions</option>
+              <option value="visual">Visuals</option>
+              <option value="voiceover">Voiceover</option>
+              <option value="other">Something else</option>
+            </select>
+          </div>
+
+          <div class="tpm-field">
+            <label for="location">Where it lives</label>
+            <input type="url" id="location" name="location" placeholder="Drive, Dropbox, Vimeo, SoundCloud..." />
+          </div>
+
+          <div class="tpm-field">
+            <label for="note">Anything else worth knowing</label>
+            <textarea id="note" name="note" rows="4" placeholder="Optional"></textarea>
+          </div>
+
+          <div class="tpm-field tpm-checkbox">
+            <input type="checkbox" id="permission" name="permission" required />
+            <label for="permission">
+              I grant permission for this work to appear in Three Paper Masks if selected. Credit on request.
+            </label>
+          </div>
+
+          <button type="submit" class="tpm-submit">Transmit →</button>
+
+          <p class="tpm-confirm" hidden>
+            Received. The signal was logged.<br>
+            You will hear back, or you won't.
+          </p>
+          <p class="tpm-error" hidden>
+            The signal failed to send. Try again in a moment.
+          </p>
+        </form>
+      </div>
+    </section>
+
+    <!-- ── SUBSCRIBE ── -->
+    <section id="subscribe" aria-labelledby="subscribe-label">
+      <div class="container">
+        <span class="section-label" id="subscribe-label">Subscribe</span>
+        <p class="subscribe-intro">
+          Receive transmissions when new chapters arrive.
+        </p>
+
+        <div class="ml-embedded" data-form="woyX7H"></div>
+
+        <p class="subscribe-note">No further communication will be sent.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="container" style="position:relative;">
+      <p class="footer-statement">
+        No part of this archive is fiction.<br>
+        No part of this archive is true.
+      </p>
+      <p class="footer-credit">
+        Site design by <a href="https://fsbstudio.com" target="_blank" rel="noopener">chrissyraine</a> —
+        <a href="https://fsbstudio.com" target="_blank" rel="noopener">fsbstudio.com</a><br>
+        <a href="https://fsbstudio.com" target="_blank" rel="noopener">Commissions open for similar work →</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- Ambient audio -->
+  <audio id="ambient" loop preload="auto" src="/assets/audio/transmission.mp3"></audio>
+
+  <!-- Audio toggle -->
+  <button id="audio-toggle" class="audio-toggle" aria-label="Unmute ambient audio">
+    <svg class="icon-on" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <polyline points="2,12 5,5 8,17 11,8 14,13 17,6 20,11"/>
+    </svg>
+    <svg class="icon-off" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <line x1="2" y1="11" x2="20" y2="11"/>
+    </svg>
+  </button>
+
+  <!-- Custom cursor -->
+  <div class="cursor" aria-hidden="true"></div>
+
+  <div class="rabbit-drift" aria-hidden="true">
+    <img src="/assets/images/rabbit-mask.png" alt="" width="75" height="75">
+  </div>
+
+  <script src="/scripts/main.js"></script>
+
+  <!-- Tune-in loader — dynamically imports Three.js only when needed -->
+  <script type="module">
+    if (window.__tuneInActive) {
+      const { initTuneIn } = await import('/scripts/tune-in.js');
+      initTuneIn();
+    }
+  </script>
+</body>
+</html>
