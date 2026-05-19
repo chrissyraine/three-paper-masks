@@ -53,7 +53,7 @@
         toggle.classList.add('on');
         toggle.setAttribute('aria-label', 'Mute ambient audio');
         if (cta) cta.classList.add('dismissed');
-      }).catch(() => { /* autoplay blocked — CTA or toggle remains for manual start */ });
+      }).catch(() => {});
     } else {
       audio.pause();
       sessionStorage.setItem('audio-on', 'false');
@@ -62,12 +62,26 @@
     }
   }
 
-  /* Resume across page navigations if user had audio on */
+  /* Resume across page navigations */
   if (sessionStorage.getItem('audio-on') === 'true') setOn(true);
+
+  /* First interaction anywhere on the page starts audio */
+  function onFirstInteraction() {
+    if (audio.paused && sessionStorage.getItem('audio-on') !== 'false') {
+      setOn(true);
+    }
+    document.removeEventListener('click', onFirstInteraction);
+    document.removeEventListener('keydown', onFirstInteraction);
+    document.removeEventListener('touchstart', onFirstInteraction);
+  }
+  document.addEventListener('click', onFirstInteraction);
+  document.addEventListener('keydown', onFirstInteraction);
+  document.addEventListener('touchstart', onFirstInteraction, { passive: true });
 
   if (cta) cta.addEventListener('click', () => setOn(true));
 
-  toggle.addEventListener('click', () => {
+  toggle.addEventListener('click', (e) => {
+    e.stopPropagation();
     audio.paused ? setOn(true) : setOn(false);
   });
 }());
