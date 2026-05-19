@@ -594,7 +594,7 @@ footer {
     min-height: 70vh;
     background-image: url('/assets/images/hero-poster.jpg');
     background-size: cover;
-    background-position: center;
+    background-position: right center;
   }
 }
 
