@@ -120,31 +120,53 @@
   const rabbit = document.querySelector('.rabbit-drift');
   if (!rabbit) return;
 
-  function driftOnce() {
-    const top      = window.innerHeight * (0.2 + Math.random() * 0.6);
-    const duration = 25000 + Math.random() * 20000;
-    const fromLeft = Math.random() > 0.5;
+  let wandering = false;
 
+  function randX() { return window.innerWidth  * (0.05 + Math.random() * 0.85); }
+  function randY() { return window.innerHeight * (0.05 + Math.random() * 0.85); }
+
+  function moveTo(x, y, duration) {
+    return new Promise(resolve => {
+      rabbit.style.transition = `left ${duration}ms cubic-bezier(0.45,0.05,0.55,0.95), top ${duration}ms cubic-bezier(0.45,0.05,0.55,0.95)`;
+      rabbit.style.left = `${x}px`;
+      rabbit.style.top  = `${y}px`;
+      setTimeout(resolve, duration);
+    });
+  }
+
+  async function wander() {
+    wandering = true;
+
+    /* start off-screen */
     rabbit.style.transition = 'none';
-    rabbit.style.top        = `${top}px`;
-    rabbit.style.left       = fromLeft ? '-100px' : 'calc(100vw + 100px)';
-    rabbit.style.transform  = 'none';
-    rabbit.style.opacity    = '';  /* clear inline opacity so class controls it */
-    rabbit.offsetHeight;           /* force reflow */
+    rabbit.style.left = `${-250}px`;
+    rabbit.style.top  = `${randY()}px`;
+    rabbit.style.opacity = '';
+    rabbit.offsetHeight;
 
-    rabbit.style.transition = `transform ${duration}ms linear, opacity 3s ease`;
     rabbit.classList.add('drifting');
-    rabbit.style.transform = fromLeft
-      ? 'translateX(calc(100vw + 200px))'
-      : 'translateX(calc(-100vw - 200px))';
 
-    setTimeout(() => { rabbit.style.opacity = '0'; }, duration - 3000);
-    setTimeout(() => { rabbit.classList.remove('drifting'); }, duration);
+    /* drift through 4-7 random waypoints across the screen */
+    const steps = 4 + Math.floor(Math.random() * 4);
+    for (let i = 0; i < steps; i++) {
+      const stepDuration = 6000 + Math.random() * 8000;
+      await moveTo(randX(), randY(), stepDuration);
+    }
+
+    /* fade out then exit off-screen */
+    rabbit.style.opacity = '0';
+    await moveTo(window.innerWidth + 250, randY(), 5000);
+
+    rabbit.classList.remove('drifting');
+    wandering = false;
   }
 
   function scheduleDrift() {
     const wait = 30000 + Math.random() * 60000;
-    setTimeout(() => { driftOnce(); scheduleDrift(); }, wait);
+    setTimeout(() => {
+      if (!wandering) wander();
+      scheduleDrift();
+    }, wait);
   }
 
   setTimeout(scheduleDrift, 15000);
