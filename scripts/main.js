@@ -198,7 +198,9 @@
     }, wait);
   }
 
-  setTimeout(scheduleDrift, 15000);
+  /* First drift fires quickly, then settles into longer intervals */
+  setTimeout(() => { if (!wandering) wander(); }, 6000);
+  setTimeout(scheduleDrift, 8000);
 }());
 
 /* ── Custom cursor (desktop/mouse only) ──────────────────── */
