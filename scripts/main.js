@@ -136,7 +136,28 @@
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
       const v = entry.target;
-      if (v.dataset.src) { v.src = v.dataset.src; v.removeAttribute('data-src'); }
+      if (!v.dataset.src) return;
+
+      const start = parseFloat(v.dataset.start || 0);
+
+      /* Add WebM source first if available, then mp4 */
+      if (v.dataset.webm) {
+        const s1 = document.createElement('source');
+        s1.type = 'video/webm'; s1.src = v.dataset.webm;
+        const s2 = document.createElement('source');
+        s2.type = 'video/mp4'; s2.src = v.dataset.src;
+        v.appendChild(s1); v.appendChild(s2);
+        v.load();
+      } else {
+        v.src = v.dataset.src;
+      }
+      v.removeAttribute('data-src');
+
+      /* Seek to chapter start time after metadata loads */
+      if (start > 0) {
+        v.addEventListener('loadedmetadata', () => { v.currentTime = start; }, { once: true });
+      }
+
       observer.unobserve(v);
     });
   }, { rootMargin: '200px' });
